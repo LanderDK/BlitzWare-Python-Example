@@ -3,6 +3,7 @@ import requests
 import subprocess
 import time
 import os
+import re
 
 
 class Security:
@@ -365,6 +366,38 @@ class API:
                 f"{self.api_url}/appLogs/", headers=headers, json=data)
 
             if not response.status_code == 201:
+                error_data = response.json()
+                error_code = error_data.get("code")
+                error_message = error_data.get("message")
+                print(f"{error_code}: {error_message}")
+        except Exception as ex:
+            print(f"An error occurred: {str(ex)}")
+
+    def download_file(self, fileId):
+        if not self.initialized:
+            print("Please initialize your application first!")
+            return
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.user_data.token}"
+            }
+            response = requests.get(
+                f"{self.api_url}/files/download/{fileId}", headers=headers)
+
+            if response.status_code == 200:
+                content_disposition = response.headers.get(
+                    "content-disposition")
+                if content_disposition:
+                    parts = content_disposition.split('=')
+                    if len(parts) == 2:
+                        filename = parts[1].strip('"')
+                        output_path = os.path.join(os.getcwd(), filename)
+                        with open(output_path, "wb") as file:
+                            file.write(response.content)
+                else:
+                    print(
+                        "Content-Disposition header not found. Unable to determine the file name.")
+            else:
                 error_data = response.json()
                 error_code = error_data.get("code")
                 error_message = error_data.get("message")

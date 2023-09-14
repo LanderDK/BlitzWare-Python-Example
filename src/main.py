@@ -56,6 +56,8 @@ print("Hardware-Id: " + BlitzWareAuth.user_data.hwid)
 print("Last login: " + BlitzWareAuth.user_data.lastLogin)
 print("Subscription expiry: " + BlitzWareAuth.user_data.expiryDate)
 
+# BlitzWareAuth.download_file("2ff23a2e-80f1-486a-a117-4c0f55fb1edd")
+
 print("\nClosing in five seconds...")
 time.sleep(5)
 exit(0)
