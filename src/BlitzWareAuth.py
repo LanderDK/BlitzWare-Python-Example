@@ -101,15 +101,14 @@ class API:
             response = requests.post(
                 f"{self.api_url}/applications/initialize", headers=headers, json=data)
 
-            response_hash = response.headers.get("X-Response-Hash")
-            recalculated_hash = Security.calculate_response_hash(response.text)
-
-            if response_hash != recalculated_hash:
-                print("Possible malicious activity detected!")
-                time.sleep(3)
-                exit(0)
-
             if response.status_code == 200:
+                response_hash = response.headers.get("X-Response-Hash")
+                recalculated_hash = Security.calculate_response_hash(
+                    response.text)
+                if response_hash != recalculated_hash:
+                    print("Possible malicious activity detected!")
+                    time.sleep(3)
+                    exit(0)
                 response_data = response.json()
                 self.app_data = self.ApplicationData()
                 self.app_data.__dict__.update(response_data)
@@ -186,15 +185,15 @@ class API:
             response = requests.post(
                 f"{self.api_url}/users/register", headers=headers, json=data)
 
-            response_hash = response.headers.get("X-Response-Hash")
-            recalculated_hash = Security.calculate_response_hash(response.text)
-
-            if response_hash != recalculated_hash:
-                print("Possible malicious activity detected!")
-                time.sleep(3)
-                exit(0)
-
             if response.status_code == 201:
+                response_hash = response.headers.get("X-Response-Hash")
+                recalculated_hash = Security.calculate_response_hash(
+                    response.text)
+                if response_hash != recalculated_hash:
+                    print("Possible malicious activity detected!")
+                    time.sleep(3)
+                    exit(0)
+
                 response_data = response.json()
                 self.user_data = self.UserData()
                 self.user_data.__dict__.update(response_data)
@@ -232,15 +231,15 @@ class API:
             response = requests.post(
                 f"{self.api_url}/users/login", headers=headers, json=data)
 
-            response_hash = response.headers.get("X-Response-Hash")
-            recalculated_hash = Security.calculate_response_hash(response.text)
-
-            if response_hash != recalculated_hash:
-                print("Possible malicious activity detected!")
-                time.sleep(3)
-                exit(0)
-
             if response.status_code == 200:
+                response_hash = response.headers.get("X-Response-Hash")
+                recalculated_hash = Security.calculate_response_hash(
+                    response.text)
+                if response_hash != recalculated_hash:
+                    print("Possible malicious activity detected!")
+                    time.sleep(3)
+                    exit(0)
+
                 response_data = response.json()
                 self.user_data = self.UserData()
                 self.user_data.__dict__.update(response_data)
@@ -276,15 +275,15 @@ class API:
             response = requests.post(
                 f"{self.api_url}/licenses/login", headers=headers, json=data)
 
-            response_hash = response.headers.get("X-Response-Hash")
-            recalculated_hash = Security.calculate_response_hash(response.text)
-
-            if response_hash != recalculated_hash:
-                print("Possible malicious activity detected!")
-                time.sleep(3)
-                exit(0)
-
             if response.status_code == 200:
+                response_hash = response.headers.get("X-Response-Hash")
+                recalculated_hash = Security.calculate_response_hash(
+                    response.text)
+                if response_hash != recalculated_hash:
+                    print("Possible malicious activity detected!")
+                    time.sleep(3)
+                    exit(0)
+
                 response_data = response.json()
                 self.user_data = self.UserData()
                 self.user_data.__dict__.update(response_data)
@@ -321,15 +320,15 @@ class API:
             response = requests.put(
                 f"{self.api_url}/users/upgrade", headers=headers, json=data)
 
-            response_hash = response.headers.get("X-Response-Hash")
-            recalculated_hash = Security.calculate_response_hash(response.text)
-
-            if response_hash != recalculated_hash:
-                print("Possible malicious activity detected!")
-                time.sleep(3)
-                exit(0)
-
             if response.status_code == 200:
+                response_hash = response.headers.get("X-Response-Hash")
+                recalculated_hash = Security.calculate_response_hash(
+                    response.text)
+                if response_hash != recalculated_hash:
+                    print("Possible malicious activity detected!")
+                    time.sleep(3)
+                    exit(0)
+
                 response_data = response.json()
                 self.user_data = self.UserData()
                 self.user_data.__dict__.update(response_data)
