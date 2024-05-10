@@ -381,7 +381,7 @@ class API:
                 "Authorization": f"Bearer {self.user_data.token}"
             }
             response = requests.get(
-                f"{self.api_url}/files/download/{fileId}", headers=headers)
+                f"{self.api_url}/files/{fileId}/download", headers=headers)
 
             if response.status_code == 200:
                 content_disposition = response.headers.get(
