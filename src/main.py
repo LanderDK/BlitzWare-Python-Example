@@ -22,7 +22,7 @@ if option == 1:
     two_factor_code = input("\n\nEnter 2FA (if enabled): ")
     if not BlitzWareAuth.login(username, password, two_factor_code):
         exit(0)
-    BlitzWareAuth.log(username, "User logged in")
+    BlitzWareAuth.log("User logged in")
 elif option == 2:
     username = input("\n\nEnter username: ")
     password = input("\n\nEnter password: ")
@@ -30,19 +30,19 @@ elif option == 2:
     key = input("\n\nEnter license: ")
     if not BlitzWareAuth.register(username, password, email, key):
         exit(0)
-    BlitzWareAuth.log(username, "User registered")
+    BlitzWareAuth.log("User registered")
 elif option == 3:
     username = input("\n\nEnter username: ")
     password = input("\n\nEnter password: ")
     key = input("\n\nEnter license: ")
     if not BlitzWareAuth.extend(username, password, key):
         exit(0)
-    BlitzWareAuth.log(username, "User extended")
+    BlitzWareAuth.log("User extended")
 elif option == 4:
     key = input("\n\nEnter license: ")
     if not BlitzWareAuth.login_license_only(key):
         exit(0)
-    BlitzWareAuth.log(key, "User login with license")
+    BlitzWareAuth.log("User login with license")
 else:
     print("\n\nInvalid Selection")
     time.sleep(3)

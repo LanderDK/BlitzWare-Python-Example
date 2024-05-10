@@ -180,7 +180,7 @@ class API:
                 "license": license,
                 "hwid": Utilities.hwid(),
                 "lastIP": Utilities.ip(),
-                "id": self.app_data.id
+                "applicationId": self.app_data.id
             }
             response = requests.post(
                 f"{self.api_url}/users/register", headers=headers, json=data)
@@ -226,7 +226,7 @@ class API:
                 "twoFactorCode": two_factor_code,
                 "hwid": Utilities.hwid(),
                 "lastIP": Utilities.ip(),
-                "appId": self.app_data.id
+                "applicationId": self.app_data.id
             }
             response = requests.post(
                 f"{self.api_url}/users/login", headers=headers, json=data)
@@ -270,7 +270,7 @@ class API:
                 "license": license,
                 "hwid": Utilities.hwid(),
                 "lastIP": Utilities.ip(),
-                "appId": self.app_data.id
+                "applicationId": self.app_data.id
             }
             response = requests.post(
                 f"{self.api_url}/licenses/login", headers=headers, json=data)
@@ -315,7 +315,7 @@ class API:
                 "password": password,
                 "license": license,
                 "hwid": Utilities.hwid(),
-                "appId": self.app_data.id
+                "applicationId": self.app_data.id
             }
             response = requests.put(
                 f"{self.api_url}/users/upgrade", headers=headers, json=data)
@@ -345,7 +345,7 @@ class API:
             time.sleep(3)
             return False
 
-    def log(self, username, action):
+    def log(self, action):
         if not self.initialized:
             print("Please initialize your application first!")
             return
@@ -356,10 +356,10 @@ class API:
                 "Authorization": f"Bearer {self.user_data.token}"
             }
             data = {
-                "username": username,
                 "action": action,
                 "ip": Utilities.ip(),
-                "appId": self.app_data.id
+                "applicationId": self.app_data.id,
+                "userId": self.user_data.id
             }
             response = requests.post(
                 f"{self.api_url}/appLogs/", headers=headers, json=data)
